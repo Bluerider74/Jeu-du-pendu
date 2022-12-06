@@ -1,0 +1,129 @@
+:root {
+    --primaryColor : #182747;
+    --secondaryColor : #562B08;
+    --tertiaryColor : #647E68;
+    --quaternaryColor : #D8D8D8;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    box-sizing: border-box;
+    height: 100vh;
+    margin: 0;
+    padding: .5rem;
+    background-color: var(--primaryColor);
+    color: var(--quaternaryColor);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    margin: 0;
+}
+ul {
+    list-style-type: none;
+}
+
+#pendu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+#imgPendu {
+    flex-grow: 1;
+    padding: .5rem;
+}
+#motMystere {
+    font-size: x-large;
+    padding: .2rem;
+    flex-wrap: wrap;
+}
+#clavier {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+.box {
+    border: .5rem solid var(--quaternaryColor);
+}
+.flex {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: .2rem;
+}
+.lettre {
+    background-color: var(--quaternaryColor);
+    color: var(--primaryColor);
+    font-size: 1.8rem;
+    font-weight: bold;
+    width: 2rem;
+}
+.lettre:hover {
+    -webkit-animation: shadow-inset-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: shadow-inset-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@-webkit-keyframes shadow-inset-center {
+    0% {
+        -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
+                box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+        -webkit-box-shadow: inset 0 0 14px 0px rgba(0, 0, 0, 0.5);
+                box-shadow: inset 0 0 14px 0px rgba(0, 0, 0, 0.5);
+    }
+}
+@keyframes shadow-inset-center {
+    0% {
+        -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
+                box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+        -webkit-box-shadow: inset 0 0 14px 0px rgba(0, 0, 0, 0.5);
+                box-shadow: inset 0 0 14px 0px rgba(0, 0, 0, 0.5);
+    }
+}
+  
+.mystere {
+    color: var(--primaryColor);
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0;
+}
+.decouvert {
+    color: var(--quaternaryColor);
+    font-weight: bold;
+    font-size: 1.8rem;
+    width: 2rem;
+}
+.utilisee {
+    background-color: var(--primaryColor);
+    color: var(--quaternaryColor);
+    font-size: 1.8rem;
+    font-weight: bold;
+    width: 2rem;
+}
+
+@media all and (min-width: 700px) {
+    #pendu {
+        width: 500px;
+    }
+}
+@media all and (min-height: 700px) {
+    #pendu {
+        height: 700px;
+    }
+}
+@media all and (max-height: 600px) {
+    #pendu {
+        height: 600px;
+    }
+}
