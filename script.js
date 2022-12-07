@@ -20,24 +20,28 @@ const optionsApi        = {
 };
 
 async function choisirMotMystere () {
-    nouveauMot = prompt ('Quel mot souhaitez-vous faire deviner :\n(si vous ne mettez rien, un mot sera généré aléatoirement)')
-    nouveauMotMystere.innerHTML = 'Votre Seigneur réfléchie...';
+    if (motMystere.length !== 0) {
+        reload ();
+    } else {
+        nouveauMot = prompt ('Quel mot souhaitez-vous faire deviner :\n(si vous ne mettez rien, un mot sera généré aléatoirement)')
+        nouveauMotMystere.innerHTML = 'Votre Seigneur réfléchie...';
 
-    if (nouveauMot == null) {
-        alert ('Vous devez écrire un mot!');
-        choisirMotMystere ();
-    } else if (nouveauMot == '') {
-        let requete = await fetch (url, optionsApi);
+        if (nouveauMot == null) {
+            alert ('Vous devez écrire un mot!');
+            choisirMotMystere ();
+        } else if (nouveauMot == '') {
+            let requete = await fetch (url, optionsApi);
 
-        if (!requete.ok) {
-            alert('Un problème est survenu.');
-        } else {
-            let reponse = await requete.json();
-            nouveauMot = reponse[0].mot;
+            if (!requete.ok) {
+                alert('Un problème est survenu.');
+            } else {
+                let reponse = await requete.json();
+                nouveauMot = reponse[0].mot;
+            }
         }
+        nouveauMot = supprimerAccentCaractereSpeciaux(nouveauMot);
+        afficherMotMystere();
     }
-    nouveauMot = supprimerAccentCaractereSpeciaux(nouveauMot);
-    afficherMotMystere();
 }
 
 supprimerAccentCaractereSpeciaux = function(a) {
@@ -81,9 +85,14 @@ function afficherMotMystere () {
     })
 
     trompette.play();
+    lettres.forEach (lettre => {
+        lettre.addEventListener('click', comparerLettre);
+    });
+
 }
 
 function comparerLettre (e) {
+
     lettreClickee = e.target;
     lettreChoisie = e.target.innerHTML;
     lettresMysteres = document.querySelectorAll('.mystere');
@@ -105,7 +114,7 @@ function comparerLettre (e) {
         }
     })
     if (redemption == false) {
-        pendreHautEtCour();
+        pendreHautEtCour ();
     } else {
         redemption = false;
     }
@@ -118,7 +127,7 @@ function pendreHautEtCour() {
         lettresMysteres.forEach (lettre => {
             lettre.className = 'decouvert';
         })
-        setTimeout(() => {
+        setTimeout (() => {
             alert ('Bon voyage dans les Limbes.');
             reload ();
         }, 1000);
@@ -126,20 +135,16 @@ function pendreHautEtCour() {
 }
 
 function reload () {
-    recommencer = confirm ("Souhaitez-vous recommencer");
+    recommencer = confirm ('Souhaitez-vous recommencer');
     if (recommencer == true) {
-        window.location.reload();
+        window.location.reload ();
+    } else if (recommencer == false && victoire !== motMystere.lenght) {
+        alert ('La partie n\'est pas isFinite.');
     } else {
         alert ('Merci d\'avoir joué!');
     }
 }
 
-
 do {
     nouveauMotMystere.addEventListener('click', choisirMotMystere);
-
-    lettres.forEach (lettre => {
-        lettre.addEventListener('click', comparerLettre);
-    });
-
-} while (recommencer)
+} while (recommencer);
