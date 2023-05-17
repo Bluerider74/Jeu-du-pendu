@@ -1,6 +1,9 @@
 # Jeu du pendu 
 
-    Régles du jeu :
+> Ceci est un projet de formation pour apprendre Javascript et l'utilisation des API.
+
+
+## Régles du jeu :
 
 Découvrire les lettres d'un mot mystére.
 
